@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>masadaruma!!!!</title>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var SBGx=0,SBGy=0;//グリッドそれぞれのx,y座標
+        /* normalblock(100,100,100,"BaseBlock",1,1,1,1);
+        normalblock(100,210,100,"SSBlock",0,1,1);
+        normalblock(100,320,100,"BBlock"); */
+        function normalblock (x,y,size,name,G=false,H=false,I=false,J=false){
+            ctx.beginPath();
+            ctx.rect(x,y,size,size);
+            ctx.strokeStyle = "rgba(0, 0, 255, 0.5)";
+            ctx.stroke();
+            /* ctx.closePath();
+            ctx.beginPath(); */
+            ctx.fillStyle="black";
+            ctx.font = "20px Arial";
+            ctx.textAlign="center";
+            ctx.textBaseLine="middle";
+            ctx.fillText(name,x+size*0.5,y+size*0.5);
+            ctx.closePath();
+            if(G){
+                connectionHorizontal(x-size-10,y,size);
+            }
+            if(H){
+                connectionVertical(x,y,size);
+            }
+            if(I){
+                connectionHorizontal(x,y,size);
+            }
+            if(J){
+                connectionVertical(x,y-size-10,size);
+            }
+        }
+        function connectionVertical(x,y,size){
+            ctx.beginPath();
+            ctx.rect(x+size/2-10,y+size,20,10);
+            ctx.fillStyle="#FF0000";
+            ctx.fill();
+            ctx.closePath();
+        }
+        function connectionHorizontal(x,y,size){
+            ctx.beginPath();
+            ctx.rect(x+size,y+size/2-10,10,20);
+            ctx.fillStyle="#FF0000";
+            ctx.fill();
+            ctx.closePath();
+        }
+        function newBlock(x,y,G=0,H=0,I=0,J=0){
+            normalblock(x,y,100,"SBlock",G,H,I,J);
+            SBGx=x;
+            SBGy=y;
+        }
+        function addBlock(direction,name,G=0,H=0,I=0,J=0){
+            if(direction=="up"){
+                newBlock(SBGx,SBGy-110,G,H,I,J);
+            }
+            if(direction=="down"){
+                newBlock(SBGx,SBGy+110,G,H,I,J);
+            }
+            if(direction=="left"){
+                newBlock(SBGx-110,SBGy,G,H,I,J);
+            }
+            if(direction=="right"){
+                newBlock(SBGx+110,SBGy,G,H,I,J);
+            }
+        }
+        newBlock(200,200,1,1,1,1);
+        addBlock("left",1,1);
+        addBlock("down",1,1);
+    </script>
+
+</body>
+
+</html>
+<!-- 
+     J
+    G I
+     H
+ -->
