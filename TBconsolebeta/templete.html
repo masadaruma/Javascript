@@ -90,50 +90,9 @@
             SBGx = SBGx + xdirection * 110;
             SBGy = SBGy + ydirection * 110;
         }
-        function drawCursor() {
-            ctx.beginPath();
-            ctx.rect(SBGx, SBGy, 100, 100);
-            ctx.strokeStyle = "rgba(0, 255, 0, 0.5)";
-            ctx.stroke();
-            ctx.closePath();
-        }
-        function OnResetButtonClicked() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            drawCursor();
-        }
-        function OnNewButtonClicked() {
-            newBlock(300, 200, G, H, I, J);
-        }
-        function OnUpButtonClicked() {
-            addBlock("up",  G, H, I, J);
-            drawCursor();
-        }
-        function OnDownButtonClicked() {
-            addBlock("down",  G, H, I, J);
-            drawCursor();
-        }
-        function OnLeftButtonClicked() {
-            addBlock("left",  G, H, I, J);
-            drawCursor();
-        }
-        function OnRightButtonClicked() {
-            addBlock("right",  G, H, I, J);
-            drawCursor();
-        }
+        //ここから
+        newBlock(300, 200, true, false, false, true);
     </script>
-    <input type="button" value="new" onclick="OnNewButtonClicked()">
-    <input type="button" value="reset" onclick="OnResetButtonClicked()">
-    <input type="button" value="up" onclick="OnUpButtonClicked()">
-    <input type="button" value="down" onclick="OnDownButtonClicked()">
-    <input type="button" value="left" onclick="OnLeftButtonClicked()">
-    <input type="button" value="right" onclick="OnRightButtonClicked()">
-    <input type="checkbox" id="G" onclick="G=!G">G
-    <input type="checkbox" id="H" onclick="H=!H">H
-    <input type="checkbox" id="I" onclick="I=!I">I
-    <input type="checkbox" id="J" onclick="J=!J">J
-    <p></p>
-    <label for="name">Blockname (8 characters Max)</label>
-    <input type="text" id="blockname" name="blockname" maxlength="8" size="10" value="">
 </body>
 
 </html>
